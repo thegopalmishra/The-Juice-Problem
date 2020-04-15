@@ -15,6 +15,19 @@ The inputs for your algorithm appear in the following lines:
 - LINE 3 - contains a sequence of lower case English alphabets which signify the **NAME** of the fruit juice that is actually on the cupboard (you can have multiple bottles of the same juice and in any order)
 - LINE 4 - contains a positive integer which specifies the exact calorie intake requirement of your friend.
 
+```
+    3 (Number of friends)
+    5 21 1 21 3 3 (Fist number denotes # of unique fruit juices then calories of each unique fruit juice on the cupboard)
+    accdeeccdeeaab (The actual list of fruit juices in the cupboard)
+    2 (Calorie intake requirement for your first friend)
+    2 3 4 (Fist number denotes # of unique fruit juices then calories of each unique fruit juice on the cupboard)
+    baba (The actual list of fruit juices in the cupboard)
+    7 (Calorie intake requirement for your second friend)
+    3 5 4 6 (Fist number denotes # of unique fruit juices then calories of each unique fruit juice on the cupboard)
+    abcbacbabcc (The actual list of fruit juices in the cupboard)
+    15 (Calorie intake requirement for your third friend)
+```
+
 ### Output:
 For each test case, output the sequence of the fruit juices to be used to serve your friend a fruit juice-mix that meets her calorific requirements, or the word **“SORRY, YOU JUST HAVE WATER”** if you are not able to meet her requirements.
 ```
