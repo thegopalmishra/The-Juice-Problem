@@ -1,6 +1,6 @@
 # The-Juice-Problem
 
-## Zinrello Assignment
+## [Zinrelo](https://zinrelo.com) Assignment
 
 You decide to throw a party for your best friends.
 But your friends are very particular about their fitness, and **each of them has exact calorie intake limits.**  Nothing more and nothing less. And, Since you want to be an excellent host , you plan to make sure they each get their exact limit!
@@ -40,7 +40,7 @@ For each test case, output the sequence of the fruit juices to be used to serve 
 ### Comments:
 For the first friend we have five unique fruit juices {a, b, c, d, e} with each having a calorie total value of {21, 1, 21, 3, 3} respectively. To achieve a total calorie intake of 2, we first sort the entire list of fruit juices (LINE 3 inputs) after which we ascertain that we need 2 bottles of b (with calorie count of 1 per bottle) whereas, we have only one b juice in our cupboard. Hence, we cannot make the cocktail for the first friend and so she will be politely told “SORRY, HAVE WATER”.
 For the 2nd friend we have 2 unique bottles {a, b}, with calorie counts of {3, 4} respectively. Her calorific need is 7 which after sorting the bottles on the cupboard {baba} can be met by 1 bottle of “a”, and 1 bottle of “b”.
-For the 3rd friend we have 3 unique bottles {a, b, c} with calorie counts of {5, 4, 6} respectively.  Her calorific requirement is 15 which after sorting the bottles on the cupboard {abcbacbabcc} can be met by the bottles “aaa” or "abc".
+For the 3rd friend we have 3 unique bottles {a, b, c} with calorie counts of {5, 4, 6} respectively.  Her calorific requirement is 15 which after sorting the bottles on the cupboard {abcbacbabcc} can be met by the bottles “aaa”.
 
 
 #### Sample Input: 
@@ -55,12 +55,32 @@ baba
 3 5 4 6
 abcbacbabcc
 15
+5 21 1 21 3 3
+accdeeccdeeaab
+4
+5 21 1 21 3 3
+accdeeccdeeaab
+7
+2 3 4
+baba
+0
+2 3 4 
+babab
+12
+3 3 4 4 
+abbbc
+12
 ```
 
 #### Sample Output:
 ```
 SORRY, YOU JUST HAVE WATER
 ab
-abc
+aaa
+bd
+bdd
+SORRY, YOU JUST HAVE WATER
+bbb
+bbb
 ```
 
