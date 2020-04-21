@@ -45,7 +45,7 @@ For the 3rd friend we have 3 unique bottles {a, b, c} with calorie counts of {5,
 
 #### Sample Input: 
 ```
-3
+9
 5 21 1 21 3 3
 accdeeccdeeaab
 2
@@ -70,6 +70,9 @@ babab
 3 3 4 4 
 abbbc
 12
+3 1 2 6
+abcbacbabcc
+13
 ```
 
 #### Sample Output:
@@ -82,5 +85,6 @@ bdd
 SORRY, YOU JUST HAVE WATER
 bbb
 bbb
+aaabbc
 ```
 
