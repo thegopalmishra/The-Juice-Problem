@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 public class JuiceProblem {
 
 	private static List <Character> juicesInShelfInSortedOrder =  null;
+	private static Map <Character, Integer> juicesCount = null;
 
 	/**
 	 * @param o : Object
@@ -102,7 +103,15 @@ public class JuiceProblem {
 		Collections.sort(juicesInShelfInSortedOrder);
 
 		cout("Sorted Fruit Juices: " + juicesInShelfInSortedOrder.toString());
-
+		
+		juicesCount = new HashMap<>();
+		for (int i = 0; i < juicesInShelfInSortedOrder.size(); i++) {
+		int c;
+		c=juicesCount.get(juicesInShelfInSortedOrder.get(i))==null?0:juicesCount.get(juicesInShelfInSortedOrder.get(i));
+		juicesCount.put(juicesInShelfInSortedOrder.get(i),++c);
+		}
+		cout("Number of Each Juice Bottles"+ juicesCount.toString());
+		
 		// To get unique fruits
 		List <Character> uniqueFruits = juicesInShelfInSortedOrder.stream()
 				.distinct()
@@ -122,7 +131,7 @@ public class JuiceProblem {
 	 * @return void
 	 * @throws IOException 
 	 * @description Creates cocktail for given calorie intakes if possible else asks to consume water (If cocktail should have unique juices and no repetition is allowed)
-	 * @deprecated Use {@link #cocktailMakerUpdated()}
+	 * @deprecated Use {@link #cocktailMakerUpdatedNew()}
 	 */
 	@SuppressWarnings("unused")
 	@Deprecated
@@ -158,7 +167,10 @@ public class JuiceProblem {
 	 * @return void
 	 * @throws IOException 
 	 * @description Creates cocktail for given calorie intakes if possible else asks to consume water (If repetition of juices is allowed in cocktail: like aaa or aab)
+	 * @deprecated Use {@link #cocktailMakerUpdatedNew()}
 	 */
+	@SuppressWarnings("unused")
+	@Deprecated
 	private static StringBuilder cocktailMakerUpdated(Map <Character, Integer> uniqueFruitsAndCalories, int calorieIntake) {
 		int calorieCount = 0;
 		int flag=0;
@@ -195,6 +207,61 @@ public class JuiceProblem {
 		cout("Coctail Combination: "+ cocktail);
 		return cocktail;
 	}
+	
+	/**
+	* @param uniqueFruitsAndCalories : Map<Character,Integer> whose key denotes unique fruits and values denotes respective calories
+	* @param calorieIntake : An integer denoting calorie intakes
+	* @since 15/04/2020
+	* @return void
+	* @throws IOException
+	* @description Creates cocktail for given calorie intakes if possible else asks to consume water (If repetition of juices is allowed in cocktail: like aaa or aab).
+	* It created cocktail keep in mind the number of bottles available for each unique fruit juices.
+	*
+	*/
+	private static StringBuilder cocktailMakerUpdatedNew(Map <Character, Integer> uniqueFruitsAndCalories, int calorieIntake) {
+		int calorieCount = 0; 
+		boolean noMatch = true;
+		StringBuilder cocktail = new StringBuilder("");
+		for (int i = 0; i < juicesInShelfInSortedOrder.size(); ) {
+			for(int j = 1; j <= juicesCount.get(juicesInShelfInSortedOrder.get(i)); j++) {
+				calorieCount += uniqueFruitsAndCalories.get(juicesInShelfInSortedOrder.get(i));
+				cocktail.append(juicesInShelfInSortedOrder.get(i));
+				if(calorieIntake == calorieCount) {
+					cout("Coctail Combination : " + cocktail);
+					noMatch = false;
+					break;
+				} else if(calorieCount > calorieIntake) {
+					calorieCount -= uniqueFruitsAndCalories.get(juicesInShelfInSortedOrder.get(i));
+					cocktail = new StringBuilder(cocktail.substring(0, cocktail.length()-1));
+					break;
+				}
+			}
+			if(!noMatch) {
+				break;
+			}
+			i += juicesCount.get(juicesInShelfInSortedOrder.get(i));
+			int c = 0;
+			int limit = 5;
+			while(i == juicesInShelfInSortedOrder.size() && (c < limit)) {
+				int k=0;
+				c++;
+				if(cocktail.length() != 0) {
+					while(!juicesInShelfInSortedOrder.get(k).equals(cocktail.charAt(cocktail.length()-1))) {
+						k++;
+					}
+					i = k + juicesCount.get(juicesInShelfInSortedOrder.get(k));
+					calorieCount -= uniqueFruitsAndCalories.get(juicesInShelfInSortedOrder.get(k));
+					cocktail = new StringBuilder(cocktail.substring(0, cocktail.length()-1));
+				}
+			}
+		}
+		if(noMatch) {
+			cocktail.setLength(0);
+			cocktail.append("SORRY, YOU JUST HAVE WATER");
+			cout(cocktail);
+		}
+		return cocktail;
+	}
 
 	public static void main(String[] args) throws IOException {
 
@@ -216,12 +283,14 @@ public class JuiceProblem {
 			String juicesOnShelf = list.get(3 * i + 2).toLowerCase();
 //			To be used when only unique juices are allowed
 //			output.add(cocktailMaker(getJuiceCaloriesList(uniqueJuicesAndCalories, juicesOnShelf), calorieIntake[i]));
-			output.add(cocktailMakerUpdated(getJuiceCaloriesList(uniqueJuicesAndCalories, juicesOnShelf), calorieIntake[i]));
+//			Kept for Reference			
+//			output.add(cocktailMakerUpdated(getJuiceCaloriesList(uniqueJuicesAndCalories, juicesOnShelf), calorieIntake[i]));
+			output.add(cocktailMakerUpdatedNew(getJuiceCaloriesList(uniqueJuicesAndCalories, juicesOnShelf), calorieIntake[i]));
 			cout("");
 		}
 		writeOutput(output);
 	}
-
+	
 }
 
 
