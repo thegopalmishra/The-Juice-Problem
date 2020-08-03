@@ -29,7 +29,7 @@ The inputs for your algorithm appear in the following lines:
 ```
 
 ### Output:
-For each test case, output the sequence of the fruit juices to be used to serve your friend a fruit juice-mix that meets her calorific requirements, or the word **“SORRY, YOU JUST HAVE WATER”** if you are not able to meet her requirements.
+For each test case, output the sequence of the fruit juices to be used to serve your friend a fruit juice-mix that meets her calorific requirements, or the word **“Appologies, YOU JUST HAVE WATER”** if you are not able to meet her requirements.
 ```
     SORRY, YOU JUST HAVE WATER (For Friend 1)
     ab (For Friend 2)
